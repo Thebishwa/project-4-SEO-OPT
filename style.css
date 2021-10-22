@@ -380,6 +380,11 @@ opacity: 90%;
     opacity: 90%;
     font-style: italic;
 }
+.text-replace-container {
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+}
 
 @media (min-width: 768px) {
     .site-navigation {
