@@ -364,20 +364,21 @@ a:hover {
 
 
 /*image changes*/
-.replace-text-1 p, .replace-text-2 p {
+.replace-text-1 h4, .replace-text-2 h4 {
 font-size: 30px;
 opacity: 90%;
 }
 .replace-text h4 {
-    font-size: 15px;
+    font-size: 20px;
 font-style: italic;
 line-height: 25px;
 opacity: 90%;
 }
 .replace-text h5 {
     margin-top: -15px;
-    font-size: 15px;
+    font-size: 20px;
     opacity: 90%;
+    font-style: italic;
 }
 
 @media (min-width: 768px) {
