@@ -364,7 +364,7 @@ a:hover {
 
 
 /*image changes*/
-.replace-text-1 h4, .replace-text-2 h4 {
+.replace-text-1 p, .replace-text-2 p {
 font-size: 30px;
 opacity: 90%;
 }
