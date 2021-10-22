@@ -362,6 +362,24 @@ a:hover {
     z-index: 2;
 }
 
+
+/*image changes*/
+.replace-text-1 h4, .replace-text-2 h4 {
+font-size: 30px;
+opacity: 90%;
+}
+.replace-text h4 {
+    font-size: 15px;
+font-style: italic;
+line-height: 25px;
+opacity: 90%;
+}
+.replace-text h5 {
+    margin-top: -15px;
+    font-size: 15px;
+    opacity: 90%;
+}
+
 @media (min-width: 768px) {
     .site-navigation {
         position: absolute;
