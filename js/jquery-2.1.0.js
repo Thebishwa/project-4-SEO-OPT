@@ -3014,17 +3014,7 @@
             }) : e
         },
         position: function() {
-            if (this[0]) {
-                var a, b, c = this[0],
-                    d = {
-                        top: 0,
-                        left: 0
-                    };
-                return "fixed" === o.css(c, "position") ? b = c.getBoundingClientRect() : (a = this.offsetParent(), b = this.offset(), o.nodeName(a[0], "html") || (d = a.offset()), d.top += o.css(a[0], "borderTopWidth", !0), d.left += o.css(a[0], "borderLeftWidth", !0)), {
-                    top: b.top - d.top - o.css(c, "marginTop", !0),
-                    left: b.left - d.left - o.css(c, "marginLeft", !0)
-                }
-            }
+           
         },
         offsetParent: function() {
             return this.map(function() {
