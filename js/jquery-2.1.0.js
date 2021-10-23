@@ -2887,27 +2887,7 @@
     a.ActiveXObject && o(a).on("unload", function() {
         for (var a in Dc) Dc[a]()
     }), l.cors = !!Fc && "withCredentials" in Fc, l.ajax = Fc = !!Fc, o.ajaxTransport(function(a) {
-        var b;
-        return l.cors || Fc && !a.crossDomain ? {
-            send: function(c, d) {
-                var e, f = a.xhr(),
-                    g = ++Cc;
-                if (f.open(a.type, a.url, a.async, a.username, a.password), a.xhrFields)
-                    for (e in a.xhrFields) f[e] = a.xhrFields[e];
-                a.mimeType && f.overrideMimeType && f.overrideMimeType(a.mimeType), a.crossDomain || c["X-Requested-With"] || (c["X-Requested-With"] = "XMLHttpRequest");
-                for (e in c) f.setRequestHeader(e, c[e]);
-                b = function(a) {
-                    return function() {
-                        b && (delete Dc[g], b = f.onload = f.onerror = null, "abort" === a ? f.abort() : "error" === a ? d(f.status, f.statusText) : d(Ec[f.status] || f.status, f.statusText, "string" == typeof f.responseText ? {
-                            text: f.responseText
-                        } : void 0, f.getAllResponseHeaders()))
-                    }
-                }, f.onload = b(), f.onerror = b("error"), b = Dc[g] = b("abort"), f.send(a.hasContent && a.data || null)
-            },
-            abort: function() {
-                b && b()
-            }
-        } : void 0
+        
     }), o.ajaxSetup({
         accepts: {
             script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
@@ -2952,17 +2932,10 @@
     }), o.ajaxPrefilter("json jsonp", function(b, c, d) {
         var e, f, g, h = b.jsonp !== !1 && (Hc.test(b.url) ? "url" : "string" == typeof b.data && !(b.contentType || "").indexOf("application/x-www-form-urlencoded") && Hc.test(b.data) && "data");
         return h || "jsonp" === b.dataTypes[0] ? (e = b.jsonpCallback = o.isFunction(b.jsonpCallback) ? b.jsonpCallback() : b.jsonpCallback, h ? b[h] = b[h].replace(Hc, "$1" + e) : b.jsonp !== !1 && (b.url += (dc.test(b.url) ? "&" : "?") + b.jsonp + "=" + e), b.converters["script json"] = function() {
-            return g || o.error(e + " was not called"), g[0]
         }, b.dataTypes[0] = "json", f = a[e], a[e] = function() {
-            g = arguments
         }, d.always(function() {
-            a[e] = f, b[e] && (b.jsonpCallback = c.jsonpCallback, Gc.push(e)), g && o.isFunction(f) && f(g[0]), g = f = void 0
         }), "script") : void 0
     }), o.parseHTML = function(a, b, c) {
-        if (!a || "string" != typeof a) return null;
-        "boolean" == typeof b && (c = b, b = !1), b = b || m;
-        var d = v.exec(a),
-            e = !c && [];
         return d ? [b.createElement(d[1])] : (d = o.buildFragment([a], b, e), e && e.length && o(e).remove(), o.merge([], d.childNodes))
     };
     var Ic = o.fn.load;
@@ -2992,36 +2965,17 @@
     }
     o.offset = {
         setOffset: function(a, b, c) {
-            var d, e, f, g, h, i, j, k = o.css(a, "position"),
-                l = o(a),
-                m = {};
-            "static" === k && (a.style.position = "relative"), h = l.offset(), f = o.css(a, "top"), i = o.css(a, "left"), j = ("absolute" === k || "fixed" === k) && (f + i).indexOf("auto") > -1, j ? (d = l.position(), g = d.top, e = d.left) : (g = parseFloat(f) || 0, e = parseFloat(i) || 0), o.isFunction(b) && (b = b.call(a, c, h)), null != b.top && (m.top = b.top - h.top + g), null != b.left && (m.left = b.left - h.left + e), "using" in b ? b.using.call(a, m) : l.css(m)
-        }
+            }
     }, o.fn.extend({
         offset: function(a) {
-            if (arguments.length) return void 0 === a ? this : this.each(function(b) {
-                o.offset.setOffset(this, a, b)
-            });
-            var b, c, d = this[0],
-                e = {
-                    top: 0,
-                    left: 0
-                },
-                f = d && d.ownerDocument;
-            if (f) return b = f.documentElement, o.contains(b, d) ? (typeof d.getBoundingClientRect !== U && (e = d.getBoundingClientRect()), c = Kc(f), {
-                top: e.top + c.pageYOffset - b.clientTop,
-                left: e.left + c.pageXOffset - b.clientLeft
-            }) : e
+           
+            
         },
         position: function() {
            
         },
         offsetParent: function() {
-            return this.map(function() {
-                var a = this.offsetParent || Jc;
-                while (a && !o.nodeName(a, "html") && "static" === o.css(a, "position")) a = a.offsetParent;
-                return a || Jc
-            })
+            
         }
     }), o.each({
         scrollLeft: "pageXOffset",
