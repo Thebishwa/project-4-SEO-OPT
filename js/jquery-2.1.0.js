@@ -2682,6 +2682,265 @@
         ajaxPrefilter: rc(nc),
         ajaxTransport: rc(oc),
         ajax: function(a, b) {
+            "object" == typeof a && (b = a, a = void 0), b = b || {};
+            var c, d, e, f, g, h, i, j, k = o.ajaxSetup({}, b),
+                l = k.context || k,
+                m = k.context && (l.nodeType || l.jquery) ? o(l) : o.event,
+                n = o.Deferred(),
+                p = o.Callbacks("once memory"),
+                q = k.statusCode || {},
+                r = {},
+                s = {},
+                t = 0,
+                u = "canceled",
+                v = {
+                    readyState: 0,
+                    getResponseHeader: function(a) {
+                        var b;
+                        if (2 === t) {
+                            if (!f) {
+                                f = {};
+                                while (b = ic.exec(e)) f[b[1].toLowerCase()] = b[2]
+                            }
+                            b = f[a.toLowerCase()]
+                        }
+                        return null == b ? null : b
+                    },
+                    getAllResponseHeaders: function() {
+                        return 2 === t ? e : null
+                    },
+                    setRequestHeader: function(a, b) {
+                        var c = a.toLowerCase();
+                        return t || (a = s[c] = s[c] || a, r[a] = b), this
+                    },
+                    overrideMimeType: function(a) {
+                        return t || (k.mimeType = a), this
+                    },
+                    statusCode: function(a) {
+                        var b;
+                        if (a)
+                            if (2 > t)
+                                for (b in a) q[b] = [q[b], a[b]];
+                            else v.always(a[v.status]);
+                        return this
+                    },
+                    abort: function(a) {
+                        var b = a || u;
+                        return c && c.abort(b), x(0, b), this
+                    }
+                };
+            if (n.promise(v).complete = p.add, v.success = v.done, v.error = v.fail, k.url = ((a || k.url || fc) + "").replace(gc, "").replace(lc, ec[1] + "//"), k.type = b.method || b.type || k.method || k.type, k.dataTypes = o.trim(k.dataType || "*").toLowerCase().match(E) || [""], null == k.crossDomain && (h = mc.exec(k.url.toLowerCase()), k.crossDomain = !(!h || h[1] === ec[1] && h[2] === ec[2] && (h[3] || ("http:" === h[1] ? "80" : "443")) === (ec[3] || ("http:" === ec[1] ? "80" : "443")))), k.data && k.processData && "string" != typeof k.data && (k.data = o.param(k.data, k.traditional)), sc(nc, k, b, v), 2 === t) return v;
+            i = k.global, i && 0 === o.active++ && o.event.trigger("ajaxStart"), k.type = k.type.toUpperCase(), k.hasContent = !kc.test(k.type), d = k.url, k.hasContent || (k.data && (d = k.url += (dc.test(d) ? "&" : "?") + k.data, delete k.data), k.cache === !1 && (k.url = hc.test(d) ? d.replace(hc, "$1_=" + cc++) : d + (dc.test(d) ? "&" : "?") + "_=" + cc++)), k.ifModified && (o.lastModified[d] && v.setRequestHeader("If-Modified-Since", o.lastModified[d]), o.etag[d] && v.setRequestHeader("If-None-Match", o.etag[d])), (k.data && k.hasContent && k.contentType !== !1 || b.contentType) && v.setRequestHeader("Content-Type", k.contentType), v.setRequestHeader("Accept", k.dataTypes[0] && k.accepts[k.dataTypes[0]] ? k.accepts[k.dataTypes[0]] + ("*" !== k.dataTypes[0] ? ", " + pc + "; q=0.01" : "") : k.accepts["*"]);
+            for (j in k.headers) v.setRequestHeader(j, k.headers[j]);
+            if (k.beforeSend && (k.beforeSend.call(l, v, k) === !1 || 2 === t)) return v.abort();
+            u = "abort";
+            for (j in {
+                    success: 1,
+                    error: 1,
+                    complete: 1
+                }) v[j](k[j]);
+            if (c = sc(oc, k, b, v)) {
+                v.readyState = 1, i && m.trigger("ajaxSend", [v, k]), k.async && k.timeout > 0 && (g = setTimeout(function() {
+                    v.abort("timeout")
+                }, k.timeout));
+                try {
+                    t = 1, c.send(r, x)
+                } catch (w) {
+                    if (!(2 > t)) throw w;
+                    x(-1, w)
+                }
+            } else x(-1, "No Transport");
+
+            function x(a, b, f, h) {
+                var j, r, s, u, w, x = b;
+                2 !== t && (t = 2, g && clearTimeout(g), c = void 0, e = h || "", v.readyState = a > 0 ? 4 : 0, j = a >= 200 && 300 > a || 304 === a, f && (u = uc(k, v, f)), u = vc(k, u, v, j), j ? (k.ifModified && (w = v.getResponseHeader("Last-Modified"), w && (o.lastModified[d] = w), w = v.getResponseHeader("etag"), w && (o.etag[d] = w)), 204 === a || "HEAD" === k.type ? x = "nocontent" : 304 === a ? x = "notmodified" : (x = u.state, r = u.data, s = u.error, j = !s)) : (s = x, (a || !x) && (x = "error", 0 > a && (a = 0))), v.status = a, v.statusText = (b || x) + "", j ? n.resolveWith(l, [r, x, v]) : n.rejectWith(l, [v, x, s]), v.statusCode(q), q = void 0, i && m.trigger(j ? "ajaxSuccess" : "ajaxError", [v, k, j ? r : s]), p.fireWith(l, [v, x]), i && (m.trigger("ajaxComplete", [v, k]), --o.active || o.event.trigger("ajaxStop")))
+            }
+            return v
+        },
+        getJSON: function(a, b, c) {
+            return o.get(a, b, c, "json")
+        },
+        getScript: function(a, b) {
+            return o.get(a, void 0, b, "script")
+        }
+    }), o.each(["get", "post"], function(a, b) {
+        o[b] = function(a, c, d, e) {
+            return o.isFunction(c) && (e = e || d, d = c, c = void 0), o.ajax({
+                url: a,
+                type: b,
+                dataType: e,
+                data: c,
+                success: d
+            })
+        }
+    }), o.each(["ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend"], function(a, b) {
+        o.fn[b] = function(a) {
+            return this.on(b, a)
+        }
+    }), o._evalUrl = function(a) {
+        return o.ajax({
+            url: a,
+            type: "GET",
+            dataType: "script",
+            async: !1,
+            global: !1,
+            "throws": !0
+        })
+    }, o.fn.extend({
+        wrapAll: function(a) {
+            var b;
+            return o.isFunction(a) ? this.each(function(b) {
+                o(this).wrapAll(a.call(this, b))
+            }) : (this[0] && (b = o(a, this[0].ownerDocument).eq(0).clone(!0), this[0].parentNode && b.insertBefore(this[0]), b.map(function() {
+                var a = this;
+                while (a.firstElementChild) a = a.firstElementChild;
+                return a
+            }).append(this)), this)
+        },
+        wrapInner: function(a) {
+            return this.each(o.isFunction(a) ? function(b) {
+                o(this).wrapInner(a.call(this, b))
+            } : function() {
+                var b = o(this),
+                    c = b.contents();
+                c.length ? c.wrapAll(a) : b.append(a)
+            })
+        },
+        wrap: function(a) {
+            var b = o.isFunction(a);
+            return this.each(function(c) {
+                o(this).wrapAll(b ? a.call(this, c) : a)
+            })
+        },
+        unwrap: function() {
+            return this.parent().each(function() {
+                o.nodeName(this, "body") || o(this).replaceWith(this.childNodes)
+            }).end()
+        }
+    }), o.expr.filters.hidden = function(a) {
+        return a.offsetWidth <= 0 && a.offsetHeight <= 0
+    }, o.expr.filters.visible = function(a) {
+        return !o.expr.filters.hidden(a)
+    };
+    var wc = /%20/g,
+        xc = /\[\]$/,
+        yc = /\r?\n/g,
+        zc = /^(?:submit|button|image|reset|file)$/i,
+        Ac = /^(?:input|select|textarea|keygen)/i;
+
+    function Bc(a, b, c, d) {
+        var e;
+        if (o.isArray(b)) o.each(b, function(b, e) {
+            c || xc.test(a) ? d(a, e) : Bc(a + "[" + ("object" == typeof e ? b : "") + "]", e, c, d)
+        });
+        else if (c || "object" !== o.type(b)) d(a, b);
+        else
+            for (e in b) Bc(a + "[" + e + "]", b[e], c, d)
+    }
+    o.param = function(a, b) {
+        var c, d = [],
+            e = function(a, b) {
+                b = o.isFunction(b) ? b() : null == b ? "" : b, d[d.length] = encodeURIComponent(a) + "=" + encodeURIComponent(b)
+            };
+        if (void 0 === b && (b = o.ajaxSettings && o.ajaxSettings.traditional), o.isArray(a) || a.jquery && !o.isPlainObject(a)) o.each(a, function() {
+            e(this.name, this.value)
+        });
+        else
+            for (c in a) Bc(c, a[c], b, e);
+        return d.join("&").replace(wc, "+")
+    }, o.fn.extend({
+        serialize: function() {
+            return o.param(this.serializeArray())
+        },
+        serializeArray: function() {
+            return this.map(function() {
+                var a = o.prop(this, "elements");
+                return a ? o.makeArray(a) : this
+            }).filter(function() {
+                var a = this.type;
+                return this.name && !o(this).is(":disabled") && Ac.test(this.nodeName) && !zc.test(a) && (this.checked || !T.test(a))
+            }).map(function(a, b) {
+                var c = o(this).val();
+                return null == c ? null : o.isArray(c) ? o.map(c, function(a) {
+                    return {
+                        name: b.name,
+                        value: a.replace(yc, "\r\n")
+                    }
+                }) : {
+                    name: b.name,
+                    value: c.replace(yc, "\r\n")
+                }
+            }).get()
+        }
+    }), o.ajaxSettings.xhr = function() {
+        try {
+            return new XMLHttpRequest
+        } catch (a) {}
+    };
+    var Cc = 0,
+        Dc = {},
+        Ec = {
+            0: 200,
+            1223: 204
+        },
+        Fc = o.ajaxSettings.xhr();
+    a.ActiveXObject && o(a).on("unload", function() {
+        for (var a in Dc) Dc[a]()
+    }), l.cors = !!Fc && "withCredentials" in Fc, l.ajax = Fc = !!Fc, o.ajaxTransport(function(a) {
+        var b;
+        return l.cors || Fc && !a.crossDomain ? {
+            send: function(c, d) {
+                var e, f = a.xhr(),
+                    g = ++Cc;
+                if (f.open(a.type, a.url, a.async, a.username, a.password), a.xhrFields)
+                    for (e in a.xhrFields) f[e] = a.xhrFields[e];
+                a.mimeType && f.overrideMimeType && f.overrideMimeType(a.mimeType), a.crossDomain || c["X-Requested-With"] || (c["X-Requested-With"] = "XMLHttpRequest");
+                for (e in c) f.setRequestHeader(e, c[e]);
+                b = function(a) {
+                    return function() {
+                        b && (delete Dc[g], b = f.onload = f.onerror = null, "abort" === a ? f.abort() : "error" === a ? d(f.status, f.statusText) : d(Ec[f.status] || f.status, f.statusText, "string" == typeof f.responseText ? {
+                            text: f.responseText
+                        } : void 0, f.getAllResponseHeaders()))
+                    }
+                }, f.onload = b(), f.onerror = b("error"), b = Dc[g] = b("abort"), f.send(a.hasContent && a.data || null)
+            },
+            abort: function() {
+                b && b()
+            }
+        } : void 0
+    }), o.ajaxSetup({
+        accepts: {
+            script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+        },
+        contents: {
+            script: /(?:java|ecma)script/
+        },
+        converters: {
+            "text script": function(a) {
+                return o.globalEval(a), a
+            }
+        }
+    }), o.ajaxPrefilter("script", function(a) {
+        void 0 === a.cache && (a.cache = !1), a.crossDomain && (a.type = "GET")
+    }), o.ajaxTransport("script", function(a) {
+        if (a.crossDomain) {
+            var b, c;
+            return {
+                send: function(d, e) {
+                    b = o("<script>").prop({
+                        async: !0,
+                        charset: a.scriptCharset,
+                        src: a.url
+                    }).on("load error", c = function(a) {
+                        b.remove(), c = null, a && e("error" === a.type ? 404 : 200, a.type)
+                    }), m.head.appendChild(b[0])
+                },
+                abort: function() {
+                    c && c()
+                }
+            }
+        }
+    });
     var Gc = [],
         Hc = /(=)\?(?=&|$)|\?\?/;
     o.ajaxSetup({
