@@ -3074,6 +3074,6 @@
     var Lc = a.jQuery,
         Mc = a.$;
     return o.noConflict = function(b) {
-        return a.$ === o && (a.$ = Mc), b && a.jQuery === o && (a.jQuery = Lc), o
+      
     }, typeof b === U && (a.jQuery = a.$ = o), o
 });
