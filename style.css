@@ -9,19 +9,8 @@ body {
 .form-group-1 {
     line-height: 60px;
 
-} 
-    
-}
-.contact-nav-bar-1 {
-    margin-left: -700px;
-   list-style: none;
-   
-}
-.contact-nav-bar-2 {
-    margin-left: -600px;
-    margin-top: -18px;
-    list-style: none;
-}
+}  
+
 a,
 button {
     transition: all .3s ease-in-out;
@@ -57,6 +46,7 @@ a:hover {
 .bloc .container {
     padding-left: 0;
     padding-right: 0;
+
 }
 
 .bloc-lg {
@@ -402,6 +392,17 @@ opacity: 90%;
 }
 
 @media (min-width: 768px) {
+    .contact-nav-bar-1 {
+        margin-left: -700px;
+       list-style: none;
+    }
+    .contact-nav-bar-2 {
+        width: 200px;
+       margin-left: 1350px;
+       list-style: none;
+       margin-top: -15px;
+    }
+      
     .site-navigation {
         position: absolute;
         top: 50%;
@@ -721,7 +722,8 @@ p {
 }
 
 .tight-width-whitespace {
-    max-width: 600px;
+    max-width: 900px;
+
 }
 
 .h1 {
@@ -891,7 +893,7 @@ h4 {
     .nav-center.navbar .nav {
         max-width: 100%
     }
-}
+    
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
     .b-parallax {
@@ -1077,6 +1079,12 @@ h4 {
     .bloc {
         padding-left: 0;
         padding-right: 0;
+    }
+    .contact-nav-bar-1 {
+        margin-left: ;
+    }
+    .contact-nav-bar-2 {
+      
     }
 }
 
