@@ -5,11 +5,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-.form-group-1 {
-    line-height: 60px;
-
-}  
+} 
 
 a,
 button {
@@ -546,7 +542,7 @@ button {
 }
 
 .form-control {
-    border-color: rgba(196, 111, 111, 0.1);
+    border-color: rgb(243 151 108);
     box-shadow: none;
     width: 200px;
 }
