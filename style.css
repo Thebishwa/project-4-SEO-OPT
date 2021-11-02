@@ -363,7 +363,13 @@ a:hover {
     z-index: 2;
 }
 
-
+.row P {
+    color: white;
+    text-decoration: yellow;
+}
+.container p {
+    text-decoration: yellow;
+}
 /*image changes*/
 .replace-text-1 h4, .replace-text-2 h4 {
 font-size: 30px;
