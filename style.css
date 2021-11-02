@@ -687,7 +687,6 @@ h2,
 h3,
 h4,
 h5,
-h6,
 p,
 label,
 .btn,
@@ -696,7 +695,13 @@ a {
     font-weight: 400;
     color: #575757!important;
 }
-
+h6 {
+    font-family: "helvetica";
+    font-weight: 400;
+    color: rgb(255, 255, 0);
+    font-size: 30px;
+    font-style: bolder;
+}
 .container {
     max-width: 1000px;
 }
