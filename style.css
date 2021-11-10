@@ -70,7 +70,7 @@ button {
 }
 
 .bloc-bg-texture::before {
-    content: "";
+   
     background-size: 2px 2px;
     position: absolute;
     top: 0;
@@ -88,9 +88,6 @@ button {
     background-attachment: fixed;
 }
 
-.d-bloc {
-    color: rgba(255, 255, 255, .7);
-}
 
 .d-bloc button:hover {
     color: rgba(255, 255, 255, .9);
@@ -510,8 +507,10 @@ a {
 h6 {
     font-family: "helvetica";
     font-weight: 400;
-    color: rgb(255, 255, 0);
+    color: #ffeb2a;
     font-size: 30px;
+    background-color: rgba(35, 31, 32, 0.7);
+
     
 }
 .container {
@@ -641,7 +640,7 @@ h4 {
 }
 
 .tc-white {
-    color: #e9da11!important;
+    color: #ffeb2a!important;
 }
 
 .btn-atomic-tangerine {
