@@ -106,6 +106,7 @@ html {
     button,input,optgroup,select,textarea {
     margin:0;
     font:inherit;
+    width: 300px;
    
     }
     
