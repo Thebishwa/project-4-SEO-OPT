@@ -18,7 +18,7 @@ button {
 .bloc {
     width: 100%;
     clear: both;
-    background: 50% 50% no-repeat;
+  
     padding: 0 50px;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -681,7 +681,7 @@ h4 {
 }
 
 .bg-atlanta-20made-20sign {
-    background-image: url("img/atlanta%20made%20sign.webp");
+    background-image: url("img/256109656_937344077182973_5753209361460277849_n.jpg");
 }
 
 .bg-atlanta-20made-20sign-20orange {
